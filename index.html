@@ -7,12 +7,40 @@
 <meta name="description" content="Lustre restores forgotten cafes back to new. Not general cleaning — deep restoration for glass, chrome, wood, and every corner routine cleaning skips.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header class="nav">
+<svg class="icon-sprite" aria-hidden="true">
+  <defs>
+    <symbol id="icon-arrow" viewBox="0 0 20 20"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="icon-drag" viewBox="0 0 20 20"><path d="M7 5L3 10l4 5M13 5l4 5-4 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-x-mark" viewBox="0 0 20 20"><path d="M6 6l8 8M14 6l-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="intro" data-intro aria-hidden="true">
+  <div class="intro-mark">
+    <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+      <path d="M12 0 L14 9 L24 12 L14 15 L12 24 L10 15 L0 12 L10 9 Z" fill="url(#sparkGradIntro)"/>
+      <defs>
+        <linearGradient id="sparkGradIntro" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#5FCBC0"/>
+          <stop offset="100%" stop-color="#F5EFE4"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <span>Lustre</span>
+  </div>
+  <div class="intro-panel intro-panel-l"></div>
+  <div class="intro-panel intro-panel-r"></div>
+</div>
+
+<header class="nav" data-nav>
   <div class="nav-inner">
     <a href="#top" class="logo" aria-label="Lustre home">
       <svg class="logo-spark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
@@ -27,11 +55,11 @@
       <span class="logo-text">Lustre</span>
     </a>
     <nav class="nav-links">
-      <a href="#why">Why Lustre</a>
-      <a href="#chapters">Chapters</a>
-      <a href="#before-after">Before / After</a>
-      <a href="#packages">Packages</a>
-      <a href="#faq">FAQ</a>
+      <a href="#why"><span>Why Lustre</span></a>
+      <a href="#chapters"><span>Chapters</span></a>
+      <a href="#before-after"><span>Before / After</span></a>
+      <a href="#packages"><span>Packages</span></a>
+      <a href="#faq"><span>FAQ</span></a>
     </nav>
     <button class="btn btn-primary" data-open-booking>Book a Clean</button>
   </div>
@@ -41,13 +69,14 @@
 
   <section class="hero" style="background-image: url('assets/hero.jpg')">
     <div class="hero-scrim"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
     <div class="hero-inner">
-      <p class="eyebrow eyebrow-light">Cafe Restoration, Not Just Cleaning</p>
-      <h1>Every gleam<br>has a story.</h1>
-      <p class="hero-sub">Even the cafe everyone used to love can quietly fade. We bring it back — glass, chrome, wood, and every corner general cleaning skips.</p>
-      <div class="hero-actions">
+      <p class="eyebrow eyebrow-light" data-reveal>Cafe Restoration, Not Just Cleaning</p>
+      <h1 data-reveal style="--i:1">Every gleam<br>has a story.</h1>
+      <p class="hero-sub" data-reveal style="--i:2">Even the cafe everyone used to love can quietly fade. We bring it back — glass, chrome, wood, and every corner general cleaning skips.</p>
+      <div class="hero-actions" data-reveal style="--i:3">
         <button class="btn btn-primary btn-large" data-open-booking>Book a Clean</button>
-        <a href="#before-after" class="btn btn-ghost">See a real before/after</a>
+        <a href="#before-after" class="btn btn-ghost">See a real before/after <svg width="16" height="16"><use href="#icon-arrow"/></svg></a>
       </div>
       <div class="scroll-cue" aria-hidden="true">
         <span></span>
@@ -57,25 +86,25 @@
   </section>
 
   <section id="why" class="problem">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <p class="eyebrow">The Quiet Decline</p>
       <h2>Even the cafe everyone loved can fade without anyone noticing.</h2>
       <p class="section-lead">Daily staff sweep the floor and wipe the counter — that's upkeep, not maintenance. None of it happens overnight. It happens over months of "good enough," until regulars start finding reasons to go elsewhere.</p>
     </div>
     <div class="problem-grid">
-      <div class="problem-card">
+      <div class="problem-card" data-reveal style="--i: 0">
         <span class="problem-mark">01</span>
         <p>Foggy windows nobody flags in a shift handover.</p>
       </div>
-      <div class="problem-card">
+      <div class="problem-card" data-reveal style="--i: 1">
         <span class="problem-mark">02</span>
         <p>Sticky tables that get a quick wipe, not a real clean.</p>
       </div>
-      <div class="problem-card">
+      <div class="problem-card" data-reveal style="--i: 2">
         <span class="problem-mark">03</span>
         <p>Grout and corners that haven't been touched since opening day.</p>
       </div>
-      <div class="problem-card">
+      <div class="problem-card" data-reveal style="--i: 3">
         <span class="problem-mark">04</span>
         <p>Chrome and fixtures dulling a little more with every "quick clean."</p>
       </div>
@@ -83,33 +112,42 @@
   </section>
 
   <section class="differentiator">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <p class="eyebrow">Why Lustre</p>
       <h2>General cleaning maintains the mess. We reverse it.</h2>
     </div>
     <div class="compare">
-      <div class="compare-col compare-col-them">
+      <div class="compare-col compare-col-them" data-reveal style="--i: 0">
         <h3>General / in-house cleaning</h3>
-        <ul>
-          <li>Surface wipe-downs on a tight daily schedule</li>
-          <li>Tight corners, grout, and seams get skipped</li>
-          <li>One product for every surface</li>
-          <li>Reactive — a deep clean only after a complaint</li>
+        <ul class="compare-list compare-list-x">
+          <li><svg width="16" height="16"><use href="#icon-x-mark"/></svg><span>Surface wipe-downs on a tight daily schedule</span></li>
+          <li><svg width="16" height="16"><use href="#icon-x-mark"/></svg><span>Tight corners, grout, and seams get skipped</span></li>
+          <li><svg width="16" height="16"><use href="#icon-x-mark"/></svg><span>One product for every surface</span></li>
+          <li><svg width="16" height="16"><use href="#icon-x-mark"/></svg><span>Reactive — a deep clean only after a complaint</span></li>
         </ul>
       </div>
-      <div class="compare-col compare-col-us">
+      <div class="compare-col compare-col-us" data-reveal style="--i: 1">
         <h3>Lustre restoration</h3>
-        <ul>
-          <li>Deep-cycle scrub of glass, chrome, wood, and floors</li>
-          <li>Detail work in every corner routine cleaning skips</li>
-          <li>Surface-matched solutions — won't dull chrome or strip wood</li>
-          <li>A scheduled rhythm that prevents buildup before it starts</li>
+        <ul class="compare-list compare-list-check">
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Deep-cycle scrub of glass, chrome, wood, and floors</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Detail work in every corner routine cleaning skips</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Surface-matched solutions — won't dull chrome or strip wood</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>A scheduled rhythm that prevents buildup before it starts</span></li>
         </ul>
       </div>
     </div>
   </section>
 
   <section id="chapters" class="chapters">
+
+    <div class="chapter-rail" data-chapter-rail aria-hidden="true">
+      <button class="chapter-rail-dot" data-rail-target="1"><span></span></button>
+      <button class="chapter-rail-dot" data-rail-target="2"><span></span></button>
+      <button class="chapter-rail-dot" data-rail-target="3"><span></span></button>
+      <button class="chapter-rail-dot" data-rail-target="4"><span></span></button>
+      <button class="chapter-rail-dot" data-rail-target="5"><span></span></button>
+      <button class="chapter-rail-dot" data-rail-target="6"><span></span></button>
+    </div>
 
     <article class="chapter" data-chapter="1" data-frame-count="30" data-frame-base="assets/frames/chapter1/frame-">
       <div class="chapter-sticky">
@@ -187,17 +225,17 @@
   </section>
 
   <section id="before-after" class="before-after">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <p class="eyebrow">See It For Yourself</p>
       <h2>The same corner. Two very different mornings.</h2>
       <p class="section-lead">Drag to reveal what a Lustre restoration actually changes — not a light dusting, a full reset.</p>
     </div>
-    <div class="ba-slider">
+    <div class="ba-slider" data-reveal>
       <div class="ba-frame" data-ba-slider>
         <img class="ba-image ba-after" src="assets/after.jpg" alt="Cafe corner after Lustre restoration, gleaming and warmly lit">
         <img class="ba-image ba-before" src="assets/before.jpg" alt="Same cafe corner before restoration, dusty and neglected" data-ba-before>
         <div class="ba-handle" data-ba-handle role="slider" tabindex="0" aria-label="Before/after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-          <span class="ba-handle-grip">↔</span>
+          <span class="ba-handle-grip"><svg width="18" height="18"><use href="#icon-drag"/></svg></span>
         </div>
         <span class="ba-tag ba-tag-before">Before</span>
         <span class="ba-tag ba-tag-after">After</span>
@@ -206,7 +244,7 @@
   </section>
 
   <section id="process" class="marquee-section">
-    <div class="marquee" aria-hidden="true">
+    <div class="marquee" data-marquee aria-hidden="true">
       <div class="marquee-track">
         <span>DUST</span><span class="dot">•</span>
         <span>SCRUB</span><span class="dot">•</span>
@@ -221,22 +259,22 @@
       </div>
     </div>
     <div class="process-grid">
-      <div class="process-step">
+      <div class="process-step" data-reveal style="--i:0">
         <span class="process-index">01</span>
         <h3>Dust</h3>
         <p>Every surface assessed, dry debris and cobwebs cleared first.</p>
       </div>
-      <div class="process-step">
+      <div class="process-step" data-reveal style="--i:1">
         <span class="process-index">02</span>
         <h3>Scrub</h3>
         <p>Stains, residue, and buildup lifted with cafe-safe solutions.</p>
       </div>
-      <div class="process-step">
+      <div class="process-step" data-reveal style="--i:2">
         <span class="process-index">03</span>
         <h3>Polish</h3>
         <p>Glass, chrome, and wood brought to a streak-free finish.</p>
       </div>
-      <div class="process-step">
+      <div class="process-step" data-reveal style="--i:3">
         <span class="process-index">04</span>
         <h3>Shine</h3>
         <p>A final pass under your own lighting, so it gleams for guests.</p>
@@ -245,43 +283,43 @@
   </section>
 
   <section id="packages" class="packages">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <p class="eyebrow">Packages</p>
       <h2>Pick a rhythm that matches how fast your cafe gets dirty again.</h2>
     </div>
     <div class="packages-grid">
-      <div class="package-card" data-package-card="essential">
+      <div class="package-card" data-package-card="essential" data-reveal style="--i:0">
         <h3>Essential</h3>
         <p class="package-sub">Surfaces &amp; floors</p>
-        <ul>
-          <li>Tables, chairs &amp; front counter</li>
-          <li>High-traffic floor areas</li>
-          <li>Glass spot-cleaning</li>
+        <ul class="compare-list compare-list-check">
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Tables, chairs &amp; front counter</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>High-traffic floor areas</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Glass spot-cleaning</span></li>
         </ul>
         <p class="package-note">Best if you already have a strong daily in-house routine.</p>
         <button class="btn btn-secondary btn-block" data-open-booking data-package="essential">Book Essential</button>
       </div>
-      <div class="package-card package-card-featured" data-package-card="signature">
+      <div class="package-card package-card-featured" data-package-card="signature" data-reveal style="--i:1">
         <span class="package-badge">Most Popular</span>
         <h3>Signature</h3>
         <p class="package-sub">Full front + back of house</p>
-        <ul>
-          <li>Everything in Essential</li>
-          <li>Kitchen &amp; prep surfaces</li>
-          <li>Full glass &amp; window detailing</li>
-          <li>Chrome &amp; equipment polish</li>
+        <ul class="compare-list compare-list-check">
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Everything in Essential</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Kitchen &amp; prep surfaces</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Full glass &amp; window detailing</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Chrome &amp; equipment polish</span></li>
         </ul>
         <p class="package-note">Recommended cadence: bi-weekly.</p>
         <button class="btn btn-primary btn-block" data-open-booking data-package="signature">Book Signature</button>
       </div>
-      <div class="package-card" data-package-card="full-shine">
+      <div class="package-card" data-package-card="full-shine" data-reveal style="--i:2">
         <h3>Full Shine</h3>
         <p class="package-sub">Deep restoration</p>
-        <ul>
-          <li>Everything in Signature</li>
-          <li>Grout &amp; tight-corner detailing</li>
-          <li>Degreasing &amp; mildew treatment</li>
-          <li>High-dust zones: vents, shelving tops</li>
+        <ul class="compare-list compare-list-check">
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Everything in Signature</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Grout &amp; tight-corner detailing</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>Degreasing &amp; mildew treatment</span></li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg><span>High-dust zones: vents, shelving tops</span></li>
         </ul>
         <p class="package-note">Built for cafes catching up after months of general-only cleaning.</p>
         <button class="btn btn-secondary btn-block" data-open-booking data-package="full-shine">Book Full Shine</button>
@@ -290,37 +328,72 @@
   </section>
 
   <section id="faq" class="faq">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <p class="eyebrow">Questions</p>
       <h2>Before you book</h2>
     </div>
     <div class="faq-list">
-      <details class="faq-item">
-        <summary>We already have staff who clean every day — why do we need this?</summary>
-        <p>Daily upkeep keeps things from piling up; it isn't built to reverse buildup that's already set in — etched glass, dulled chrome, grout gone grey. That's a different job, done on a different schedule.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Will you need to close during service hours?</summary>
-        <p>No — most restorations run before opening or after close. We work around your hours, not the other way around.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What products do you use?</summary>
-        <p>Cafe-safe, food-contact-appropriate solutions matched to each surface, so we don't dull chrome, strip sealant, or leave residue near food prep areas.</p>
-      </details>
-      <details class="faq-item">
-        <summary>How often should we book a Full Shine?</summary>
-        <p>It depends on foot traffic and how long it's been. Most forgotten spaces need one deep restoration, then settle into Signature or Essential to maintain it.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Do you serve cafes outside the city center?</summary>
-        <p>Let us know your location when you book — we'll confirm coverage and timing.</p>
-      </details>
+      <div class="faq-item" data-reveal style="--i:0">
+        <button class="faq-trigger" data-faq-trigger aria-expanded="false">
+          <span>We already have staff who clean every day — why do we need this?</span>
+          <svg class="faq-icon" width="18" height="18"><use href="#icon-plus"/></svg>
+        </button>
+        <div class="faq-panel" data-faq-panel>
+          <div class="faq-panel-inner">
+            <p>Daily upkeep keeps things from piling up; it isn't built to reverse buildup that's already set in — etched glass, dulled chrome, grout gone grey. That's a different job, done on a different schedule.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item" data-reveal style="--i:1">
+        <button class="faq-trigger" data-faq-trigger aria-expanded="false">
+          <span>Will you need to close during service hours?</span>
+          <svg class="faq-icon" width="18" height="18"><use href="#icon-plus"/></svg>
+        </button>
+        <div class="faq-panel" data-faq-panel>
+          <div class="faq-panel-inner">
+            <p>No — most restorations run before opening or after close. We work around your hours, not the other way around.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item" data-reveal style="--i:2">
+        <button class="faq-trigger" data-faq-trigger aria-expanded="false">
+          <span>What products do you use?</span>
+          <svg class="faq-icon" width="18" height="18"><use href="#icon-plus"/></svg>
+        </button>
+        <div class="faq-panel" data-faq-panel>
+          <div class="faq-panel-inner">
+            <p>Cafe-safe, food-contact-appropriate solutions matched to each surface, so we don't dull chrome, strip sealant, or leave residue near food prep areas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item" data-reveal style="--i:3">
+        <button class="faq-trigger" data-faq-trigger aria-expanded="false">
+          <span>How often should we book a Full Shine?</span>
+          <svg class="faq-icon" width="18" height="18"><use href="#icon-plus"/></svg>
+        </button>
+        <div class="faq-panel" data-faq-panel>
+          <div class="faq-panel-inner">
+            <p>It depends on foot traffic and how long it's been. Most forgotten spaces need one deep restoration, then settle into Signature or Essential to maintain it.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item" data-reveal style="--i:4">
+        <button class="faq-trigger" data-faq-trigger aria-expanded="false">
+          <span>Do you serve cafes outside the city center?</span>
+          <svg class="faq-icon" width="18" height="18"><use href="#icon-plus"/></svg>
+        </button>
+        <div class="faq-panel" data-faq-panel>
+          <div class="faq-panel-inner">
+            <p>Let us know your location when you book — we'll confirm coverage and timing.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="cta" style="background-image: url('assets/cta.jpg')">
     <div class="cta-scrim"></div>
-    <div class="cta-inner">
+    <div class="cta-inner" data-reveal>
       <p class="eyebrow eyebrow-light">Ready When You Are</p>
       <h2>Bring back the cafe people used to talk about.</h2>
       <p class="cta-sub">One restoration. Then a rhythm that keeps it that way.</p>
@@ -351,18 +424,18 @@
 
 <div class="modal-overlay" data-booking-overlay hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="booking-title">
-    <button class="modal-close" data-close-booking aria-label="Close">&times;</button>
+    <button class="modal-close" data-close-booking aria-label="Close"><svg width="18" height="18"><use href="#icon-close"/></svg></button>
 
     <div class="modal-body" data-modal-body>
       <p class="eyebrow">Book a Clean</p>
       <h3 id="booking-title">Let's get your cafe gleaming</h3>
 
       <form class="booking-form" data-booking-form novalidate>
-        <div class="field">
+        <div class="field" style="--i:0">
           <label for="cafeName">Cafe name</label>
           <input type="text" id="cafeName" name="cafeName" required autocomplete="organization">
         </div>
-        <div class="field-row">
+        <div class="field-row" style="--i:1">
           <div class="field">
             <label for="contactName">Your name</label>
             <input type="text" id="contactName" name="contactName" required autocomplete="name">
@@ -372,7 +445,7 @@
             <input type="email" id="email" name="email" required autocomplete="email">
           </div>
         </div>
-        <div class="field-row">
+        <div class="field-row" style="--i:2">
           <div class="field">
             <label for="phone">Phone</label>
             <input type="tel" id="phone" name="phone" autocomplete="tel">
@@ -382,7 +455,7 @@
             <input type="date" id="date" name="date" required>
           </div>
         </div>
-        <div class="field">
+        <div class="field" style="--i:3">
           <label for="package">Package</label>
           <select id="package" name="package" required>
             <option value="">Select a package</option>
@@ -391,11 +464,11 @@
             <option value="full-shine">Full Shine — deep restoration</option>
           </select>
         </div>
-        <div class="field">
+        <div class="field" style="--i:4">
           <label for="notes">Notes (optional)</label>
           <textarea id="notes" name="notes" rows="3" placeholder="Opening hours, access details, anything we should know"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Request Booking</button>
+        <button type="submit" class="btn btn-primary btn-block" style="--i:5">Request Booking</button>
       </form>
     </div>
 

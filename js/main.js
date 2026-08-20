@@ -1,4 +1,46 @@
 (() => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Page-load intro ---------- */
+
+  const intro = document.querySelector('[data-intro]');
+  if (intro) {
+    if (prefersReducedMotion) {
+      intro.classList.add('is-done');
+    } else {
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          intro.classList.add('is-leaving');
+          setTimeout(() => intro.classList.add('is-done'), 1000);
+        }, 350);
+      });
+      // Safety net: never block the page for more than 2.5s even if load stalls.
+      setTimeout(() => intro.classList.add('is-leaving', 'is-done'), 2500);
+    }
+  }
+
+  /* ---------- Nav solidify on scroll ---------- */
+
+  const nav = document.querySelector('[data-nav]');
+  if (nav) {
+    const syncNav = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
+    syncNav();
+    window.addEventListener('scroll', syncNav, { passive: true });
+  }
+
+  /* ---------- Scroll reveal ---------- */
+
+  const revealTargets = document.querySelectorAll('[data-reveal]');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  revealTargets.forEach((el) => revealObserver.observe(el));
+
   /* ---------- Chapter scroll-scrub (canvas frame sequence) ---------- */
 
   const chapterState = Array.from(document.querySelectorAll('.chapter')).map((chapter) => {
@@ -84,10 +126,25 @@
     }, 150);
   });
 
+  /* ---------- Chapter progress rail ---------- */
+
+  const chapterRail = document.querySelector('[data-chapter-rail]');
+  const railDots = chapterRail ? Array.from(chapterRail.querySelectorAll('[data-rail-target]')) : [];
+  const chaptersSection = document.getElementById('chapters');
+
+  railDots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const n = dot.dataset.railTarget;
+      const target = document.querySelector(`.chapter[data-chapter="${n}"]`);
+      if (target) target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+  });
+
   function tickChapters() {
     const viewportHeight = window.innerHeight;
+    let activeIndex = -1;
 
-    chapterState.forEach((state) => {
+    chapterState.forEach((state, i) => {
       const { chapter, frameCount } = state;
       const rect = chapter.getBoundingClientRect();
       const scrollableHeight = chapter.offsetHeight - viewportHeight;
@@ -95,6 +152,8 @@
 
       const progress = Math.min(Math.max(-rect.top / scrollableHeight, 0), 1);
       const inView = rect.top < viewportHeight && rect.bottom > 0;
+
+      if (inView) activeIndex = i;
 
       if (state.loaded && inView) {
         const frameIndex = Math.min(frameCount - 1, Math.floor(progress * frameCount));
@@ -111,8 +170,15 @@
         caption.style.transform = isCenter
           ? `translate(-50%, calc(-50% + ${(1 - revealProgress) * 20}px))`
           : `translateY(${(1 - revealProgress) * 20}px)`;
+        caption.style.filter = `blur(${(1 - revealProgress) * 6}px)`;
       }
     });
+
+    if (chapterRail && chaptersSection) {
+      const secRect = chaptersSection.getBoundingClientRect();
+      chapterRail.classList.toggle('is-active', secRect.top < viewportHeight * 0.6 && secRect.bottom > viewportHeight * 0.4);
+      railDots.forEach((dot, i) => dot.classList.toggle('is-active', i === activeIndex));
+    }
 
     requestAnimationFrame(tickChapters);
   }
@@ -125,6 +191,8 @@
     const beforeImg = baFrame.querySelector('[data-ba-before]');
     const handle = baFrame.querySelector('[data-ba-handle]');
     let dragging = false;
+    let hasInteracted = false;
+    handle.classList.add('is-idle');
 
     function setSliderPosition(clientX) {
       const rect = baFrame.getBoundingClientRect();
@@ -135,8 +203,17 @@
       handle.setAttribute('aria-valuenow', Math.round(pct));
     }
 
+    function markInteracted() {
+      if (hasInteracted) return;
+      hasInteracted = true;
+      handle.classList.remove('is-idle');
+    }
+
     handle.addEventListener('pointerdown', (e) => {
       dragging = true;
+      markInteracted();
+      beforeImg.classList.remove('has-transition');
+      handle.classList.remove('has-transition');
       handle.setPointerCapture(e.pointerId);
     });
     window.addEventListener('pointermove', (e) => {
@@ -145,16 +222,36 @@
     window.addEventListener('pointerup', () => { dragging = false; });
 
     baFrame.addEventListener('pointerdown', (e) => {
-      if (e.target === handle) return;
+      if (e.target === handle || handle.contains(e.target)) return;
+      markInteracted();
+      beforeImg.classList.add('has-transition');
+      handle.classList.add('has-transition');
       setSliderPosition(e.clientX);
+      setTimeout(() => {
+        beforeImg.classList.remove('has-transition');
+        handle.classList.remove('has-transition');
+      }, 550);
     });
 
     handle.addEventListener('keydown', (e) => {
       const current = parseFloat(handle.style.left) || 50;
+      markInteracted();
       if (e.key === 'ArrowLeft') setSliderPosition(baFrame.getBoundingClientRect().left + (baFrame.offsetWidth * (current - 5) / 100));
       if (e.key === 'ArrowRight') setSliderPosition(baFrame.getBoundingClientRect().left + (baFrame.offsetWidth * (current + 5) / 100));
     });
   }
+
+  /* ---------- FAQ accordion ---------- */
+
+  document.querySelectorAll('[data-faq-trigger]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('[data-faq-trigger]').forEach((t) => {
+        if (t !== trigger) t.setAttribute('aria-expanded', 'false');
+      });
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
 
   /* ---------- Booking modal ---------- */
 
@@ -204,16 +301,5 @@
     successMessage.textContent = `Thanks — we'll reach out about restoring ${cafeName || 'your cafe'} shortly.`;
     modalBody.hidden = true;
     modalSuccess.hidden = false;
-  });
-
-  /* ---------- FAQ: only one open at a time ---------- */
-
-  document.querySelectorAll('.faq-item').forEach((item) => {
-    item.addEventListener('toggle', () => {
-      if (!item.open) return;
-      document.querySelectorAll('.faq-item[open]').forEach((other) => {
-        if (other !== item) other.removeAttribute('open');
-      });
-    });
   });
 })();
