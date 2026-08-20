@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lustre — Premium Cafe Cleaning</title>
-<meta name="description" content="Lustre is a premium cafe cleaning service. From grime to gleam — scroll to watch the transformation.">
+<title>Lustre — Cafe Restoration, Not Just Cleaning</title>
+<meta name="description" content="Lustre restores forgotten cafes back to new. Not general cleaning — deep restoration for glass, chrome, wood, and every corner routine cleaning skips.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -27,9 +27,11 @@
       <span class="logo-text">Lustre</span>
     </a>
     <nav class="nav-links">
+      <a href="#why">Why Lustre</a>
       <a href="#chapters">Chapters</a>
-      <a href="#process">Process</a>
-      <a href="#reveal">Reveal</a>
+      <a href="#before-after">Before / After</a>
+      <a href="#packages">Packages</a>
+      <a href="#faq">FAQ</a>
     </nav>
     <button class="btn btn-primary" data-open-booking>Book a Clean</button>
   </div>
@@ -37,11 +39,16 @@
 
 <main id="top">
 
-  <section class="hero">
+  <section class="hero" style="background-image: url('assets/hero.jpg')">
+    <div class="hero-scrim"></div>
     <div class="hero-inner">
-      <p class="eyebrow">Premium Cafe Cleaning</p>
+      <p class="eyebrow eyebrow-light">Cafe Restoration, Not Just Cleaning</p>
       <h1>Every gleam<br>has a story.</h1>
-      <p class="hero-sub">Scroll to watch six corners of a cafe go from forgotten to flawless — one wipe, one reveal at a time.</p>
+      <p class="hero-sub">Even the cafe everyone used to love can quietly fade. We bring it back — glass, chrome, wood, and every corner general cleaning skips.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-large" data-open-booking>Book a Clean</button>
+        <a href="#before-after" class="btn btn-ghost">See a real before/after</a>
+      </div>
       <div class="scroll-cue" aria-hidden="true">
         <span></span>
         <small>Scroll</small>
@@ -49,13 +56,64 @@
     </div>
   </section>
 
+  <section id="why" class="problem">
+    <div class="section-head">
+      <p class="eyebrow">The Quiet Decline</p>
+      <h2>Even the cafe everyone loved can fade without anyone noticing.</h2>
+      <p class="section-lead">Daily staff sweep the floor and wipe the counter — that's upkeep, not maintenance. None of it happens overnight. It happens over months of "good enough," until regulars start finding reasons to go elsewhere.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="problem-mark">01</span>
+        <p>Foggy windows nobody flags in a shift handover.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-mark">02</span>
+        <p>Sticky tables that get a quick wipe, not a real clean.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-mark">03</span>
+        <p>Grout and corners that haven't been touched since opening day.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-mark">04</span>
+        <p>Chrome and fixtures dulling a little more with every "quick clean."</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="differentiator">
+    <div class="section-head">
+      <p class="eyebrow">Why Lustre</p>
+      <h2>General cleaning maintains the mess. We reverse it.</h2>
+    </div>
+    <div class="compare">
+      <div class="compare-col compare-col-them">
+        <h3>General / in-house cleaning</h3>
+        <ul>
+          <li>Surface wipe-downs on a tight daily schedule</li>
+          <li>Tight corners, grout, and seams get skipped</li>
+          <li>One product for every surface</li>
+          <li>Reactive — a deep clean only after a complaint</li>
+        </ul>
+      </div>
+      <div class="compare-col compare-col-us">
+        <h3>Lustre restoration</h3>
+        <ul>
+          <li>Deep-cycle scrub of glass, chrome, wood, and floors</li>
+          <li>Detail work in every corner routine cleaning skips</li>
+          <li>Surface-matched solutions — won't dull chrome or strip wood</li>
+          <li>A scheduled rhythm that prevents buildup before it starts</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section id="chapters" class="chapters">
 
-    <article class="chapter" data-chapter="1">
+    <article class="chapter" data-chapter="1" data-frame-count="30" data-frame-base="assets/frames/chapter1/frame-">
       <div class="chapter-sticky">
-        <video class="chapter-video" muted playsinline preload="none">
-          <source data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3HTmchOfIG5yiRWudugpH6w6Hay/hf_20260820_155733_7b6880e6-cfc6-4d1f-b324-079679443a0b.mp4" type="video/mp4">
-        </video>
+        <canvas class="chapter-canvas"></canvas>
         <div class="chapter-scrim"></div>
         <div class="chapter-caption">
           <span class="chapter-num">01</span>
@@ -65,11 +123,9 @@
       </div>
     </article>
 
-    <article class="chapter" data-chapter="2">
+    <article class="chapter" data-chapter="2" data-frame-count="30" data-frame-base="assets/frames/chapter2/frame-">
       <div class="chapter-sticky">
-        <video class="chapter-video" muted playsinline preload="none">
-          <source data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3HTmchOfIG5yiRWudugpH6w6Hay/hf_20260820_155745_a349056c-335f-4320-a8de-e0fd18e1bb90.mp4" type="video/mp4">
-        </video>
+        <canvas class="chapter-canvas"></canvas>
         <div class="chapter-scrim"></div>
         <div class="chapter-caption">
           <span class="chapter-num">02</span>
@@ -79,11 +135,9 @@
       </div>
     </article>
 
-    <article class="chapter" data-chapter="3">
+    <article class="chapter" data-chapter="3" data-frame-count="30" data-frame-base="assets/frames/chapter3/frame-">
       <div class="chapter-sticky">
-        <video class="chapter-video" muted playsinline preload="none">
-          <source data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3HTmchOfIG5yiRWudugpH6w6Hay/hf_20260820_155406_b6a2c88d-5c04-42de-8d34-a87d50d56ecb.mp4" type="video/mp4">
-        </video>
+        <canvas class="chapter-canvas"></canvas>
         <div class="chapter-scrim"></div>
         <div class="chapter-caption">
           <span class="chapter-num">03</span>
@@ -93,11 +147,9 @@
       </div>
     </article>
 
-    <article class="chapter" data-chapter="4">
+    <article class="chapter" data-chapter="4" data-frame-count="30" data-frame-base="assets/frames/chapter4/frame-">
       <div class="chapter-sticky">
-        <video class="chapter-video" muted playsinline preload="none">
-          <source data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3HTmchOfIG5yiRWudugpH6w6Hay/hf_20260820_155755_129a551e-a70a-4b98-bd46-95b7b2afda62.mp4" type="video/mp4">
-        </video>
+        <canvas class="chapter-canvas"></canvas>
         <div class="chapter-scrim"></div>
         <div class="chapter-caption">
           <span class="chapter-num">04</span>
@@ -107,11 +159,9 @@
       </div>
     </article>
 
-    <article class="chapter" data-chapter="5">
+    <article class="chapter" data-chapter="5" data-frame-count="30" data-frame-base="assets/frames/chapter5/frame-">
       <div class="chapter-sticky">
-        <video class="chapter-video" muted playsinline preload="none">
-          <source data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3HTmchOfIG5yiRWudugpH6w6Hay/hf_20260820_155406_165e1bb2-e2dd-45d3-9fe6-b24b24d79e4d.mp4" type="video/mp4">
-        </video>
+        <canvas class="chapter-canvas"></canvas>
         <div class="chapter-scrim"></div>
         <div class="chapter-caption">
           <span class="chapter-num">05</span>
@@ -121,11 +171,9 @@
       </div>
     </article>
 
-    <article class="chapter chapter-wide" id="reveal" data-chapter="6">
+    <article class="chapter chapter-wide" id="reveal" data-chapter="6" data-frame-count="30" data-frame-base="assets/frames/chapter6/frame-">
       <div class="chapter-sticky">
-        <video class="chapter-video" muted playsinline preload="none">
-          <source data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3HTmchOfIG5yiRWudugpH6w6Hay/hf_20260820_155406_3089b2e6-3c67-412e-b0f2-d15c5f15dd0e.mp4" type="video/mp4">
-        </video>
+        <canvas class="chapter-canvas"></canvas>
         <div class="chapter-scrim chapter-scrim-strong"></div>
         <div class="chapter-caption chapter-caption-center">
           <span class="chapter-num">06</span>
@@ -136,6 +184,25 @@
       </div>
     </article>
 
+  </section>
+
+  <section id="before-after" class="before-after">
+    <div class="section-head">
+      <p class="eyebrow">See It For Yourself</p>
+      <h2>The same corner. Two very different mornings.</h2>
+      <p class="section-lead">Drag to reveal what a Lustre restoration actually changes — not a light dusting, a full reset.</p>
+    </div>
+    <div class="ba-slider">
+      <div class="ba-frame" data-ba-slider>
+        <img class="ba-image ba-after" src="assets/after.jpg" alt="Cafe corner after Lustre restoration, gleaming and warmly lit">
+        <img class="ba-image ba-before" src="assets/before.jpg" alt="Same cafe corner before restoration, dusty and neglected" data-ba-before>
+        <div class="ba-handle" data-ba-handle role="slider" tabindex="0" aria-label="Before/after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <span class="ba-handle-grip">↔</span>
+        </div>
+        <span class="ba-tag ba-tag-before">Before</span>
+        <span class="ba-tag ba-tag-after">After</span>
+      </div>
+    </div>
   </section>
 
   <section id="process" class="marquee-section">
@@ -177,10 +244,86 @@
     </div>
   </section>
 
-  <section class="cta">
+  <section id="packages" class="packages">
+    <div class="section-head">
+      <p class="eyebrow">Packages</p>
+      <h2>Pick a rhythm that matches how fast your cafe gets dirty again.</h2>
+    </div>
+    <div class="packages-grid">
+      <div class="package-card" data-package-card="essential">
+        <h3>Essential</h3>
+        <p class="package-sub">Surfaces &amp; floors</p>
+        <ul>
+          <li>Tables, chairs &amp; front counter</li>
+          <li>High-traffic floor areas</li>
+          <li>Glass spot-cleaning</li>
+        </ul>
+        <p class="package-note">Best if you already have a strong daily in-house routine.</p>
+        <button class="btn btn-secondary btn-block" data-open-booking data-package="essential">Book Essential</button>
+      </div>
+      <div class="package-card package-card-featured" data-package-card="signature">
+        <span class="package-badge">Most Popular</span>
+        <h3>Signature</h3>
+        <p class="package-sub">Full front + back of house</p>
+        <ul>
+          <li>Everything in Essential</li>
+          <li>Kitchen &amp; prep surfaces</li>
+          <li>Full glass &amp; window detailing</li>
+          <li>Chrome &amp; equipment polish</li>
+        </ul>
+        <p class="package-note">Recommended cadence: bi-weekly.</p>
+        <button class="btn btn-primary btn-block" data-open-booking data-package="signature">Book Signature</button>
+      </div>
+      <div class="package-card" data-package-card="full-shine">
+        <h3>Full Shine</h3>
+        <p class="package-sub">Deep restoration</p>
+        <ul>
+          <li>Everything in Signature</li>
+          <li>Grout &amp; tight-corner detailing</li>
+          <li>Degreasing &amp; mildew treatment</li>
+          <li>High-dust zones: vents, shelving tops</li>
+        </ul>
+        <p class="package-note">Built for cafes catching up after months of general-only cleaning.</p>
+        <button class="btn btn-secondary btn-block" data-open-booking data-package="full-shine">Book Full Shine</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="faq">
+    <div class="section-head">
+      <p class="eyebrow">Questions</p>
+      <h2>Before you book</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>We already have staff who clean every day — why do we need this?</summary>
+        <p>Daily upkeep keeps things from piling up; it isn't built to reverse buildup that's already set in — etched glass, dulled chrome, grout gone grey. That's a different job, done on a different schedule.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Will you need to close during service hours?</summary>
+        <p>No — most restorations run before opening or after close. We work around your hours, not the other way around.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What products do you use?</summary>
+        <p>Cafe-safe, food-contact-appropriate solutions matched to each surface, so we don't dull chrome, strip sealant, or leave residue near food prep areas.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How often should we book a Full Shine?</summary>
+        <p>It depends on foot traffic and how long it's been. Most forgotten spaces need one deep restoration, then settle into Signature or Essential to maintain it.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do you serve cafes outside the city center?</summary>
+        <p>Let us know your location when you book — we'll confirm coverage and timing.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="cta" style="background-image: url('assets/cta.jpg')">
+    <div class="cta-scrim"></div>
     <div class="cta-inner">
-      <p class="eyebrow">Ready when you are</p>
-      <h2>Let your cafe open like this every morning.</h2>
+      <p class="eyebrow eyebrow-light">Ready When You Are</p>
+      <h2>Bring back the cafe people used to talk about.</h2>
+      <p class="cta-sub">One restoration. Then a rhythm that keeps it that way.</p>
       <button class="btn btn-primary btn-large" data-open-booking>Book a Clean</button>
     </div>
   </section>
@@ -201,7 +344,7 @@
       </svg>
       <span class="logo-text">Lustre</span>
     </div>
-    <p class="footer-tag">Premium cafe cleaning. From grime to gleam.</p>
+    <p class="footer-tag">Cafe restoration, not just cleaning.</p>
     <p class="footer-copy">© 2026 Lustre Cleaning Co.</p>
   </div>
 </footer>
@@ -245,7 +388,7 @@
             <option value="">Select a package</option>
             <option value="essential">Essential — surfaces &amp; floors</option>
             <option value="signature">Signature — full front + back of house</option>
-            <option value="full-shine">Full Shine — deep clean, corners included</option>
+            <option value="full-shine">Full Shine — deep restoration</option>
           </select>
         </div>
         <div class="field">
