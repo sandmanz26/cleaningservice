@@ -28,6 +28,20 @@
     window.addEventListener('scroll', syncNav, { passive: true });
   }
 
+  /* ---------- Floating booking CTA ---------- */
+
+  const floatCta = document.querySelector('[data-float-cta]');
+  if (floatCta) {
+    const syncFloatCta = () => {
+      const pastHero = window.scrollY > window.innerHeight * 0.9;
+      const nearBottom = window.scrollY + window.innerHeight > document.documentElement.scrollHeight - 200;
+      floatCta.classList.toggle('is-visible', pastHero && !nearBottom);
+    };
+    syncFloatCta();
+    window.addEventListener('scroll', syncFloatCta, { passive: true });
+    window.addEventListener('resize', syncFloatCta);
+  }
+
   /* ---------- Scroll reveal ---------- */
 
   const revealTargets = document.querySelectorAll('[data-reveal]');
@@ -269,11 +283,13 @@
     overlay.hidden = false;
     requestAnimationFrame(() => overlay.classList.add('is-open'));
     document.body.style.overflow = 'hidden';
+    if (floatCta) floatCta.classList.add('is-hidden-by-modal');
   }
 
   function closeModal() {
     overlay.classList.remove('is-open');
     document.body.style.overflow = '';
+    if (floatCta) floatCta.classList.remove('is-hidden-by-modal');
     setTimeout(() => {
       overlay.hidden = true;
       modalBody.hidden = false;
