@@ -386,13 +386,54 @@ p { margin: 0; }
 
 /* ---------- Problem / agitation ---------- */
 .problem { padding: 6rem 0; background: var(--cream); }
-.problem-grid {
+.problem-layout {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+.problem-image {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  min-height: 100%;
+}
+.problem-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.2) contrast(1.05) brightness(0.82);
+}
+.problem-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(59,42,32,0.05) 0%, rgba(59,42,32,0.75) 100%);
+}
+.problem-image-caption {
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 1;
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: normal;
+  line-height: 1.4;
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 860px) {
+  .problem-layout { grid-template-columns: 1fr; }
+  .problem-image { min-height: 260px; }
 }
 .problem-card {
   position: relative;
@@ -424,16 +465,30 @@ p { margin: 0; }
 .problem-card:hover .problem-mark { color: rgba(95,203,192,0.28); }
 .problem-card p { position: relative; z-index: 1; color: var(--espresso-light); font-size: 0.98rem; }
 
-@media (max-width: 900px) {
-  .problem-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 520px) {
+@media (max-width: 480px) {
   .problem-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- Differentiator ---------- */
-.differentiator { padding: 6rem 0 7rem; background: var(--cream-dim); }
+.differentiator { position: relative; padding: 7rem 0 8rem; background: var(--espresso); overflow: hidden; }
+.differentiator-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.15);
+}
+.differentiator-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(35,25,18,0.94) 0%, rgba(59,42,32,0.88) 55%, rgba(35,25,18,0.96) 100%);
+}
+.differentiator .section-head { position: relative; z-index: 1; }
+.differentiator .section-head .eyebrow { color: var(--aqua); }
+.differentiator .section-head h2 { color: var(--cream); }
 .compare {
+  position: relative;
+  z-index: 1;
   max-width: 980px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -444,25 +499,29 @@ p { margin: 0; }
 .compare-col {
   border-radius: 4px;
   padding: 2rem;
-  transition: transform 0.4s var(--ease);
+  transition: transform 0.4s var(--ease), border-color 0.4s ease, background 0.4s ease;
 }
 .compare-col h3 { font-size: 1.15rem; margin-bottom: 1.25rem; }
 .compare-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.85rem; }
 .compare-list li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.98rem; }
 .compare-list svg { flex-shrink: 0; margin-top: 2px; }
 .compare-col-them {
-  background: transparent;
-  border: 1.5px dashed rgba(59,42,32,0.25);
-  color: var(--espresso-light);
+  background: rgba(245,239,228,0.05);
+  backdrop-filter: blur(8px);
+  border: 1.5px dashed rgba(245,239,228,0.25);
+  color: rgba(245,239,228,0.65);
 }
-.compare-col-them h3 { color: var(--espresso-light); }
-.compare-list-x svg { color: rgba(59,42,32,0.35); }
+.compare-col-them:hover { background: rgba(245,239,228,0.08); }
+.compare-col-them h3 { color: rgba(245,239,228,0.75); }
+.compare-list-x svg { color: rgba(245,239,228,0.35); }
 .compare-col-us {
-  background: var(--espresso);
+  background: rgba(35,25,18,0.85);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(95,203,192,0.3);
   color: var(--cream);
-  box-shadow: 0 20px 40px rgba(59,42,32,0.18);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.35);
 }
-.compare-col-us:hover { transform: translateY(-4px); }
+.compare-col-us:hover { transform: translateY(-4px); border-color: rgba(95,203,192,0.55); }
 .compare-col-us h3 { color: var(--aqua); }
 .compare-list-check svg { color: var(--aqua); }
 
