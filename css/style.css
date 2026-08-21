@@ -532,18 +532,38 @@ p { margin: 0; }
 /* ---------- Chapters intro ---------- */
 .chapters-intro { padding: 6rem 0 3rem; background: var(--cream); }
 
-/* ---------- Chapters ---------- */
-.chapters { position: relative; }
+/* ---------- Chapters (stacking cards) ---------- */
+.chapters { position: relative; background: var(--cream); }
 .chapter {
   position: relative;
-  height: 300vh;
+  height: 260vh;
+  z-index: calc(var(--stack-i, 1) + 1);
 }
 .chapter-sticky {
   position: sticky;
   top: 0;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.75rem, 2.5vw, 1.75rem);
+}
+.chapter-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
+  border-radius: clamp(12px, 1.8vw, 28px);
   background: var(--espresso);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+  will-change: transform;
+}
+.chapter-tuck-dim {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
 }
 .chapter-canvas {
   position: absolute;
@@ -555,29 +575,28 @@ p { margin: 0; }
 .chapter-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(59,42,32,0.75) 0%, rgba(59,42,32,0.15) 45%, rgba(59,42,32,0.35) 100%);
+  background: linear-gradient(to top, rgba(59,42,32,0.78) 0%, rgba(59,42,32,0.2) 45%, rgba(59,42,32,0.4) 100%);
 }
 .chapter-scrim-strong {
   background: linear-gradient(to top, rgba(59,42,32,0.85) 0%, rgba(59,42,32,0.35) 55%, rgba(59,42,32,0.5) 100%);
 }
 .chapter-caption {
   position: absolute;
-  left: 2rem;
-  right: 2rem;
-  bottom: 3.5rem;
+  left: clamp(1.25rem, 4vw, 3rem);
+  right: clamp(1.25rem, 4vw, 3rem);
+  bottom: clamp(1.5rem, 5vw, 3.5rem);
   max-width: 560px;
   color: var(--cream);
   opacity: 0;
-  transform: translateY(20px);
-  filter: blur(6px);
-  will-change: opacity, transform, filter;
+  transform: translateY(14px);
+  will-change: opacity, transform;
 }
 .chapter-caption-center {
   left: 50%;
   right: auto;
   bottom: auto;
   top: 50%;
-  transform: translate(-50%, calc(-50% + 20px));
+  transform: translate(-50%, calc(-50% + 14px));
   max-width: 640px;
   text-align: center;
 }

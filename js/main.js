@@ -59,6 +59,7 @@
 
   const chapterState = Array.from(document.querySelectorAll('.chapter')).map((chapter) => {
     const canvas = chapter.querySelector('.chapter-canvas');
+    const caption = chapter.querySelector('.chapter-caption');
     return {
       chapter,
       canvas,
@@ -68,6 +69,10 @@
       images: [],
       loaded: false,
       currentFrame: -1,
+      card: chapter.querySelector('.chapter-card'),
+      tuckDim: chapter.querySelector('[data-tuck-dim]'),
+      caption,
+      captionIsCenter: caption ? caption.classList.contains('chapter-caption-center') : false,
     };
   });
 
@@ -76,8 +81,8 @@
   }
 
   function sizeCanvas(state) {
-    const sticky = state.chapter.querySelector('.chapter-sticky');
-    const rect = sticky.getBoundingClientRect();
+    const card = state.chapter.querySelector('.chapter-card');
+    const rect = card.getBoundingClientRect();
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     state.canvas.width = Math.round(rect.width * dpr);
     state.canvas.height = Math.round(rect.height * dpr);
@@ -174,18 +179,34 @@
         drawFrame(state, frameIndex);
       }
 
-      const caption = chapter.querySelector('.chapter-caption');
+      // Only touch styles for chapters actually near the viewport — with 6
+      // chapters this loop runs every animation frame, so skipping off-screen
+      // ones avoids paying for style writes (and repaints) nobody can see.
+      if (!inView) return;
+
+      // Reveal fast (readable almost as soon as the chapter is on screen) and
+      // hold through most of the scroll, so a quick-scrolling visitor still
+      // catches the text instead of only seeing mid-fade motion.
+      const caption = state.caption;
       if (caption) {
-        const revealProgress = Math.min(progress / 0.25, 1);
-        const fadeOutProgress = progress > 0.85 ? (progress - 0.85) / 0.15 : 0;
+        const revealProgress = Math.min(progress / 0.06, 1);
+        const fadeOutProgress = progress > 0.88 ? (progress - 0.88) / 0.12 : 0;
         const opacity = Math.max(revealProgress - fadeOutProgress, 0);
         caption.style.opacity = opacity;
-        const isCenter = caption.classList.contains('chapter-caption-center');
-        caption.style.transform = isCenter
-          ? `translate(-50%, calc(-50% + ${(1 - revealProgress) * 20}px))`
-          : `translateY(${(1 - revealProgress) * 20}px)`;
-        caption.style.filter = `blur(${(1 - revealProgress) * 6}px)`;
+        const translate = (1 - revealProgress) * 10;
+        caption.style.transform = state.captionIsCenter
+          ? `translate(-50%, calc(-50% + ${translate}px))`
+          : `translateY(${translate}px)`;
       }
+
+      // "Stacking cards": as a chapter nears its end, the card tucks back
+      // (scales down, dims slightly) just before the next card slides over
+      // it. Scale is a compositor-only transform; the dim uses a plain
+      // opacity overlay instead of a CSS filter, which would force a repaint
+      // of the canvas underneath on every frame.
+      const tuckProgress = progress > 0.85 ? (progress - 0.85) / 0.15 : 0;
+      if (state.card) state.card.style.transform = tuckProgress > 0 ? `scale(${1 - tuckProgress * 0.06})` : '';
+      if (state.tuckDim) state.tuckDim.style.opacity = tuckProgress * 0.35;
     });
 
     if (chapterRail && chaptersSection) {
