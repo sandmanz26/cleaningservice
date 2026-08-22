@@ -175,6 +175,7 @@ p { margin: 0; }
   height: var(--nav-height);
   z-index: 100;
   background: linear-gradient(to bottom, rgba(245,239,228,0.9), rgba(245,239,228,0));
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   transition: background 0.4s var(--ease-soft), box-shadow 0.4s var(--ease-soft), height 0.3s var(--ease-soft);
 }
@@ -507,6 +508,7 @@ p { margin: 0; }
 .compare-list svg { flex-shrink: 0; margin-top: 2px; }
 .compare-col-them {
   background: rgba(245,239,228,0.05);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border: 1.5px dashed rgba(245,239,228,0.25);
   color: rgba(245,239,228,0.65);
@@ -516,6 +518,7 @@ p { margin: 0; }
 .compare-list-x svg { color: rgba(245,239,228,0.35); }
 .compare-col-us {
   background: rgba(35,25,18,0.85);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border: 1.5px solid rgba(95,203,192,0.3);
   color: var(--cream);
@@ -738,6 +741,7 @@ p { margin: 0; }
   border-radius: 999px;
   background: rgba(59,42,32,0.55);
   color: var(--cream);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 .ba-tag-before { left: 1.25rem; }
@@ -890,7 +894,7 @@ p { margin: 0; }
   overflow: hidden;
   transition: border-color 0.3s ease;
 }
-.faq-item:has(.faq-trigger[aria-expanded="true"]) { border-color: var(--aqua); }
+.faq-item.is-open { border-color: var(--aqua); }
 .faq-trigger {
   width: 100%;
   cursor: pointer;
@@ -915,7 +919,7 @@ p { margin: 0; }
   transition: grid-template-rows 0.4s var(--ease);
 }
 .faq-panel-inner { overflow: hidden; }
-.faq-item:has(.faq-trigger[aria-expanded="true"]) .faq-panel { grid-template-rows: 1fr; }
+.faq-item.is-open .faq-panel { grid-template-rows: 1fr; }
 .faq-panel-inner p { padding: 0 1.4rem 1.1rem; color: var(--espresso-light); font-size: 0.95rem; line-height: 1.6; }
 
 /* ---------- CTA ---------- */
@@ -1025,6 +1029,7 @@ p { margin: 0; }
   position: fixed;
   inset: 0;
   background: rgba(59,42,32,0.55);
+  -webkit-backdrop-filter: blur(0px);
   backdrop-filter: blur(0px);
   display: flex;
   align-items: center;
@@ -1035,7 +1040,7 @@ p { margin: 0; }
   pointer-events: none;
   transition: opacity 0.3s var(--ease), backdrop-filter 0.3s var(--ease);
 }
-.modal-overlay.is-open { opacity: 1; pointer-events: auto; backdrop-filter: blur(4px); }
+.modal-overlay.is-open { opacity: 1; pointer-events: auto; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
 .modal-overlay[hidden] { display: flex; }
 .modal {
   background: var(--cream);

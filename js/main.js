@@ -1,6 +1,40 @@
 (() => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- Smooth scroll (Lenis) ----------
+     Lenis animates the real window scroll position (not a transformed
+     wrapper), so everything downstream that reads window.scrollY /
+     getBoundingClientRect() for the chapter scrub, reveals, nav and
+     floating CTA keeps working unmodified. Skipped entirely under
+     prefers-reduced-motion, and CSS scroll-behavior is handed off to it
+     so the two don't fight over anchor-link jumps. */
+
+  let lenis = null;
+  if (!prefersReducedMotion && window.Lenis) {
+    lenis = new window.Lenis({
+      duration: 1.1,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+      smoothWheel: true,
+    });
+    document.documentElement.style.scrollBehavior = 'auto';
+    const raf = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const id = link.getAttribute('href');
+        if (id.length < 2) return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        lenis.scrollTo(target, { offset: -76, duration: 1.3 });
+      });
+    });
+  }
+
   /* ---------- Page-load intro ---------- */
 
   const intro = document.querySelector('[data-intro]');
@@ -155,7 +189,9 @@
     dot.addEventListener('click', () => {
       const n = dot.dataset.railTarget;
       const target = document.querySelector(`.chapter[data-chapter="${n}"]`);
-      if (target) target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      if (!target) return;
+      if (lenis) lenis.scrollTo(target, { duration: 1.2 });
+      else target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });
   });
 
@@ -282,9 +318,13 @@
     trigger.addEventListener('click', () => {
       const isOpen = trigger.getAttribute('aria-expanded') === 'true';
       document.querySelectorAll('[data-faq-trigger]').forEach((t) => {
-        if (t !== trigger) t.setAttribute('aria-expanded', 'false');
+        if (t !== trigger) {
+          t.setAttribute('aria-expanded', 'false');
+          t.closest('.faq-item')?.classList.remove('is-open');
+        }
       });
       trigger.setAttribute('aria-expanded', String(!isOpen));
+      trigger.closest('.faq-item')?.classList.toggle('is-open', !isOpen);
     });
   });
 
